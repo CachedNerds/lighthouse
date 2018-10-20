@@ -1,7 +1,8 @@
-use serde_json;
 use std::error::Error;
 use std::fs::File;
+use std::io::Read;
 use std::path::Path;
+use toml;
 
 #[derive(Serialize, Deserialize, Clone)]
 pub struct Config {
@@ -14,8 +15,11 @@ pub struct Config {
 }
 
 pub fn load_config(filepath: &Path) -> Result<Config, Box<Error>> {
-    let file = File::open(filepath)?;
-    let contents = serde_json::from_reader(file)?;
+    let mut file = File::open(filepath)?;
+    let mut toml_str = String::new();
+    file.read_to_string(&mut toml_str)?;
 
-    Ok(contents)
+    let config = toml::from_str(&toml_str)?;
+
+    Ok(config)
 }
