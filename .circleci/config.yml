@@ -1,0 +1,39 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+    - image: circleci/rust
+    steps:
+    - checkout
+    - restore_cache:
+        key: project-cache-build
+    - run:
+        name: Stable Build
+        command: cargo build
+    - save_cache:
+        key: project-cache-build
+        paths:
+        - "~/.cargo"
+        - "./target"
+  test:
+    docker:
+    - image: circleci/rust
+    steps:
+    - checkout
+    - restore_cache:
+        key: project-cache-test
+    - run:
+        name: Test
+        command: cargo test
+    - save_cache:
+        key: project-cache-test
+        paths:
+        - "~/.cargo"
+        - "./target"
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+    - build
+    - test

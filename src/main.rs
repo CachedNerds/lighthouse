@@ -22,6 +22,8 @@ fn main() {
                 r.method(Method::GET).f(routes::version::versions)
             }).resource("/.well-known/matrix/client", |r| {
                 r.method(Method::GET).f(routes::discovery::well_known)
+            }).resource("/_matrix/client/r0/login", |r| {
+                r.method(Method::GET).f(routes::login::supported_login_types)
             })
     }).bind(format!(
         "{}:{}",
