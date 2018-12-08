@@ -19,7 +19,5 @@ pub struct LoginFlow {
 }
 
 pub fn supported_login_types(_: &HttpRequest<AppState>) -> Result<Json<Response>, Error> {
-    Ok(Json(Response {
-        flows: FLOWS,
-    }))
+    Ok(Json(Response { flows: FLOWS }))
 }

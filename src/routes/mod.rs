@@ -1,3 +1,3 @@
 pub mod discovery;
-pub mod version;
 pub mod login;
+pub mod version;
