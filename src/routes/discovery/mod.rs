@@ -1,6 +1,6 @@
 use actix_web::error::Error;
 use actix_web::{HttpRequest, Json};
-use state::AppState;
+use crate::state::AppState;
 
 #[derive(Serialize)]
 pub struct HomeserverData {
