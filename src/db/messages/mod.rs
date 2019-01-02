@@ -1,6 +1,5 @@
 use crate::db::models;
 use actix_web::actix::Message;
-use actix_web::Error;
 
 pub struct GetUser {
     pub username: String,

@@ -25,7 +25,7 @@ jobs:
         key: project-cache-test
     - run:
         name: Test
-        command: cargo test
+        command: export RUST_BACKTRACE=1 && cargo test -- --nocapture
     - save_cache:
         key: project-cache-test
         paths:
